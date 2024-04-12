@@ -22,14 +22,13 @@ while n >= 0:
             elif zeros_consecutivos == 3:
                 soma -= antepenultimo_numero
     else:
-        soma -= numero
+        soma += numero
         antepenultimo_numero = penultimo_numero
         penultimo_numero = ultimo_numero
         ultimo_numero = numero
-        zeros_consecutivos = 0
     if  zeros_consecutivos > 3:
         cont_desconsiderados-=1
         print(f"Só é permitido até 3 números consecutivos!!!")
 print(f"Soma total = {soma}")
 print(f"Números considerados = {cont_considerados - cont_desconsiderados}")
-print(f"Número desconsiderados = {cont_desconsiderados}")
+print(f"Números desconsiderados = {cont_desconsiderados}")
