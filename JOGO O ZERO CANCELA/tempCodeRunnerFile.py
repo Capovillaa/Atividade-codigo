@@ -13,19 +13,19 @@ while n >= 0:
     if numero < 0:
         break
     elif numero == 0:
-            cont_desconsiderados+=1
+            cont_desconsiderados += 1
             zeros_consecutivos += 1
             if zeros_consecutivos == 1:
                 soma -= ultimo_numero
-                ultimo_numero=penultimo_numero
-                penultimo_numero=antepenultimo_numero
+                ultimo_numero = penultimo_numero
+                penultimo_numero = antepenultimo_numero
             elif zeros_consecutivos == 2:
                 soma -= ultimo_numero
-                ultimo_numero=penultimo_numero
+                ultimo_numero = penultimo_numero
             elif zeros_consecutivos == 3:
                 soma -= ultimo_numero
             elif  zeros_consecutivos > 3:
-                cont_desconsiderados-=1
+                cont_desconsiderados -= 1
                 print(f"Só é permitido até 3 números consecutivos!!!")
     else:
         soma += numero
