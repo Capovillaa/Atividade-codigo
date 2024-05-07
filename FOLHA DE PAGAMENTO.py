@@ -11,7 +11,7 @@ def verificacao_salario102(salario):
     return salario
 
 loop=0
-
+verificacao_cod=0
 print('-'*50)
 
 dict_funcionarios = {}
@@ -20,19 +20,31 @@ while(loop==0):
 
     menu=int(input("1: Inserir Funcionários\n2: Remover Funcionários\n\nSelecione: "))
     print('-'*50)
+
     if(menu==1):
+
         qnt_funcionarios = int(input("Digite a Quantidade de funcionários que deseja cadastrar: "))
         print('-'*50)
+
         for i in range(qnt_funcionarios):
             matricula = int(input(f"Qual a mátricula do {i+1}°funcionário: "))
             nome_funcionario = (input(f"Qual o nome do {i+1}°funcionário: "))
             codigo_funcao = int(input("Digite o código da função deste funcionário: "))
+            while (verificacao_cod == 0):
+                if(codigo_funcao != 101) and (codigo_funcao != 102):
+                    print("ESTE CÓDIGO DE FUNÇÃO NÃO EXISTE!!!")
+                    codigo_funcao = int(input("Digite um código de existente: "))
+                else:
+                    verificacao_cod=1
+                
             num_faltas = int(input(f"Digite o número de faltas deste funcionário: "))
+
             if (codigo_funcao==101):
                 salario_bruto=calculo_salario_bruto101()
             elif(codigo_funcao==102):
                 salario102=float(input("Digite o salário bruto deste funcionário: "))
                 salario_bruto=verificacao_salario102(salario102)
+
             inf_funcionarios.append(nome_funcionario.title())
             inf_funcionarios.append(codigo_funcao)
             inf_funcionarios.append(num_faltas)
