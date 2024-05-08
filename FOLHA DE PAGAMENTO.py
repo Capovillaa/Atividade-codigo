@@ -13,7 +13,7 @@ def imposto_renda (salario):
     
 def calculo_salario_bruto101 ():
     if (codigo_funcao==101):
-        volumevenda=float(input("Digite o volume de vendas deste funcionário do mês: R$ "))
+        volumevenda=float(input("Digite o volume de vendas deste funcionário no mês: R$ "))
         salario_bruto = (1500+(0.09*volumevenda))
         return salario_bruto
     
@@ -24,7 +24,7 @@ def calculo_salario_liquido101 (salario_bruto,imposto):
 def verificacao_salario102 (salario): 
     while(salario < 2150) or (salario > 6950):
         print("!!!SALÁRIO BRUTO INVÁLIDO!!!")  
-        salario=float(input("Digite o salário bruto deste funcionário: "))  
+        salario=float(input("Digite um salário bruto válido: "))  
     return salario
 
 loop=0
@@ -50,7 +50,7 @@ while(loop==0):
             while (verificacao_cod == 0):
                 if(codigo_funcao != 101) and (codigo_funcao != 102):
                     print("ESTE CÓDIGO DE FUNÇÃO NÃO EXISTE!!!")
-                    codigo_funcao = int(input("Digite um código de existente: "))
+                    codigo_funcao = int(input("Digite um código existente: "))
                 else:
                     verificacao_cod=1
 
@@ -75,7 +75,7 @@ while(loop==0):
             dict_funcionarios[matricula] = inf_funcionarios
             inf_funcionarios=[]
             print('-'*50)
-
+    print(dict_funcionarios)
     if(menu==2):
 
         remover_funcionário=int(input("Digite a mátricula do funcionário que será removido: "))
