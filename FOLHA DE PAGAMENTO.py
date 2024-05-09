@@ -29,6 +29,7 @@ def verificacao_salario102 (salario):
 
 loop=0
 verificacao_cod=0
+print("\n     BEM VINDO AO SOFTWARE FOLHA DE PAGAMENTO")
 print('-'*50)
 
 dict_funcionarios = {}
