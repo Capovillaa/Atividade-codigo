@@ -1,11 +1,11 @@
 def imposto_renda (salario):
     if (salario <= 2259.20):
         imposto = 0
-    elif (salario >= 2259.21) and (salario <= 2828.65):
+    elif (salario <= 2828.65):
         imposto = 0.075    
-    elif (salario >= 2828.66) and (salario <= 3751.05):
+    elif (salario <= 3751.05):
         imposto = 0.15
-    elif (salario >= 3751.06) and (salario <= 4664.68):
+    elif (salario <= 4664.68):
         imposto = 0.225
     elif (salario > 4664.68):
         imposto = 0.275
