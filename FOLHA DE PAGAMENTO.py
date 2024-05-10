@@ -42,6 +42,19 @@ def calculo_salario_liquido (salario_bruto,imposto):
     salario_liquido = salario_bruto - (salario_bruto * imposto ) 
     return salario_liquido
 
+def imprimir_folha_pagamento(matricula, inf):
+    nome_funcionario = inf[0]
+    codigo_funcao = inf[1]
+    num_faltas = inf[2]
+    salario_liquido = inf[3]
+
+    print('-' * 50)
+    print(f"Matrícula: {matricula}")
+    print(f"Nome do funcionário: {nome_funcionario}")
+    print(f"Código da função: {codigo_funcao}")
+    print(f"Número de faltas: {num_faltas}")
+    print(f"Salário líquido: R$ {salario_liquido:.2f}")
+    print('-' * 50)
 print("\n     BEM VINDO AO SOFTWARE FOLHA DE PAGAMENTO")
 print('-'*50)
 
@@ -103,12 +116,10 @@ while(loop==0):
             print('-'*50)
     
     if menu == 3:
-        folha_pagamento=int(input("Digite o número da matricula do funcionario que deseja determinar a folha de pagamento: "))
+        folha_pagamento = int(input("Digite o número da matrícula do funcionário que deseja visualizar a folha de pagamento: "))
         if folha_pagamento in dict_funcionarios:
-            print('-'*50)
-            print(f"Matricula: {folha_pagamento}\nValores: {dict_funcionarios[folha_pagamento]}")
-            print('-'*50)
+            imprimir_folha_pagamento(folha_pagamento, dict_funcionarios[folha_pagamento])
         else:
-            print('-'*50)
-            print("Esse número de matricula não existe")
-            print('-'*50)
+            print('-' * 50)
+            print("Essa matrícula não corresponde a nenhum funcionário.")
+            print('-' * 50)
