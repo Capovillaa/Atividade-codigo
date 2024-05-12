@@ -173,6 +173,6 @@ while(loop==0):
             indice+=1
         print('-' * 50)
     
-    if menu == 5:
+    if (menu == 5):
         imprimir_info_maior_salario(dict_funcionarios)
         print('-' * 50)
