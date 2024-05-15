@@ -40,22 +40,60 @@ def calculo_salario_liquido_e_imposto (salario_bruto):
     return salario_liquido, imposto
 
 def imprimir_folha_pagamento (matricula, inf):
-    nome_funcionario = inf[0]
-    codigo_funcao = inf[1]
-    num_faltas = inf[2]
-    salario_liquido = inf[4]
-
+    if inf[5] == 0:
+        IMP = 'Isento'
+    else:
+        IMP = inf[5]*100
     print('-' * 50)
     print(f"Matrícula: {matricula}")
-    print(f"Nome do funcionário: {nome_funcionario}")
-    print(f"Código da função: {codigo_funcao}")
-    print(f"Número de faltas: {num_faltas}")
-    print(f"Salário líquido: R$ {salario_liquido:.2f}")
+    print(f"Nome do funcionário: {inf[0]}")
+    print(f"Código da função: {inf[1]}")
+    print(f"Número de faltas: {inf[2]}")
+    print(f"Salário líquido: R$ {inf[4]:.2f}")
+    if inf[5] == 0:
+        print(f"Imposto: Isento")
+    else:
+        print(f"Imposto: {inf[5]*100:.2f}%")
     print('-' * 50)
 
+def alteracao_folha_pagamento (matricula):
+    loop_alteracao = 0
+    while (loop_alteracao == 0):
+        print('-'*50)
+        print("///ALTERAÇÃO DE DADOS///")
+        menu_alteracao = int(input("1. Alterar o Nome\n2. Alterar o Código da Função\n3. Alterar o Número de Faltas\n4. Alterar Salário Bruto\n5. Mudar Funcionário \n6. SAIR\n\nSelecione: "))
+        
+        if (menu_alteracao == 1):
+            print('-'*50)
+            novo_nome_funcionario = input("Digite o Novo Nome: ")
+            dict_funcionarios[matricula][0] = novo_nome_funcionario
+        
+        if (menu_alteracao == 2):
+            print('-'*50)
+            novo_cod_funcao = int(input("Digite o Novo Código da Função do Funcionário: "))
+            novo_cod_funcao = verificacao_cod(novo_cod_funcao)
+            dict_funcionarios[matricula][1] = novo_cod_funcao # Perguntar pra Lúcia  Se ao cliente alterar o código da função De um determinado funcionário O salário permanece o msm Ou ao alterar a função Necessariamente o salário muda tbm
 
+        if (menu_alteracao == 3):  
+            print('-'*50)
+            novo_num_faltas = int(input("Digite o Novo Número de Faltas: "))  
+            dict_funcionarios[matricula][2] = novo_num_faltas
+        
+        if (menu_alteracao == 4):
+            print('-'*50)
+            novo_salario_bruto = calculo_salario_bruto(dict_funcionarios[matricula][1],dict_funcionarios[matricula][2])  
+            dict_funcionarios[matricula][3] = novo_salario_bruto
+            novo_salario_liquido,novo_imposto = calculo_salario_liquido_e_imposto(novo_salario_bruto)
+            dict_funcionarios[matricula][4] = novo_salario_liquido
+            dict_funcionarios[matricula][5] = novo_imposto
 
+        if (menu_alteracao == 5):    
+            print('-'*50)
+            matricula = int(input("Digite a mátricula do novo funcionário que deseja alterar as informações: "))
 
+        if (menu_alteracao == 6):   
+            loop_alteracao +=1    
+        print(dict_funcionarios)
 print("\n     BEM VINDO AO SOFTWARE FOLHA DE PAGAMENTO")
 print('-'*50)
 
@@ -65,8 +103,7 @@ lista_salarios_brutos=[]
 loop = 0
 
 while(loop==0):
-
-    menu=int(input("1: Inserir Funcionários\n2: Remover Funcionários\n3: Folha Pagamento\n4: Relatório de todos os funcionários\n\nSelecione: "))
+    menu = int(input("1. Inserir Funcionários\n2. Remover Funcionários\n3. Folha Pagamento\n4. Relatório de todos os funcionários\n7. Alterar Folha de Pagamento de determinado funcionário\n8. SAIR\n\nSelecione: "))
     print('-'*50)
 
     if(menu==1):
@@ -96,6 +133,7 @@ while(loop==0):
             lista_salarios_brutos.append(salario_bruto)
 
             print('-'*50)
+        print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
     print(dict_funcionarios)
     if(menu == 2):
 
@@ -110,6 +148,7 @@ while(loop==0):
             print('-'*50)
             print("Funcionário não encontrado.")
             print('-'*50)
+        print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
     
     if (menu == 3):
 
@@ -119,8 +158,9 @@ while(loop==0):
             imprimir_folha_pagamento(folha_pagamento, dict_funcionarios[folha_pagamento])
         else:
             print('-' * 50)
-            print("Essa matrícula não corresponde a nenhum funcionário.")
+            print("!!!Essa matrícula não corresponde a nenhum funcionário!!!")
             print('-' * 50)
+        print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
 
     if (menu == 4):
         
@@ -136,6 +176,22 @@ while(loop==0):
             print(f"Nome do funcionário: {nome_funcionario}")
             print(f"Código da função: {codigo_funcao}")
             print(f"Salário bruto: R$ {salario_bruto:.2f}")
-            print(f"Salário líquido: R$ {salario_liquido:.2f}\n")
+            print(f"Salário líquido: R$ {salario_liquido:.2f}")
+            print('-' * 50)
+        print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
+    
+    if (menu == 7):
+        matricula_func_alterado = int(input("Digite a mátricula do funcionário que deseja alterar as informações: "))
 
+        if matricula_func_alterado in dict_funcionarios.keys():
+            alteracao_folha_pagamento(matricula_func_alterado)
+        else:
+            print('-' * 50) 
+            print("!!!Essa matrícula não corresponde a nenhum funcionário!!!")
+            print('-' * 50)   
+        print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
+
+    if (menu == 8):
+        loop += 1
+        
         print('-' * 50)
