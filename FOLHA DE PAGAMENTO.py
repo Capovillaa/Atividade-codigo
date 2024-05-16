@@ -40,10 +40,6 @@ def calculo_salario_liquido_e_imposto (salario_bruto):
     return salario_liquido, imposto
 
 def imprimir_folha_pagamento (matricula, inf):
-    if inf[5] == 0:
-        IMP = 'Isento'
-    else:
-        IMP = inf[5]*100
     print('-' * 50)
     print(f"Matrícula: {matricula}")
     print(f"Nome do funcionário: {inf[0]}")
@@ -165,18 +161,13 @@ while(loop==0):
     if (menu == 4):
         
         for k in dict_funcionarios.items():
-            matricula = k[0]
-            nome_funcionario = k[1][0]
-            codigo_funcao = k[1][1]
-            salario_bruto = k[1][3]
-            salario_liquido = k[1][4]
 
             print('-' * 50)
-            print(f"\nMatrícula: {matricula}")
-            print(f"Nome do funcionário: {nome_funcionario}")
-            print(f"Código da função: {codigo_funcao}")
-            print(f"Salário bruto: R$ {salario_bruto:.2f}")
-            print(f"Salário líquido: R$ {salario_liquido:.2f}")
+            print(f"\nMatrícula: {k[0]}")
+            print(f"Nome do funcionário: {k[1][0]}")
+            print(f"Código da função: {k[1][1]}")
+            print(f"Salário bruto: R$ {k[1][3]:.2f}")
+            print(f"Salário líquido: R$ {k[1][4]:.2f}")
             print('-' * 50)
         print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
     
