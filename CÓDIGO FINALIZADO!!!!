@@ -92,7 +92,7 @@ def alteracao_folha_pagamento (matricula):
         print(dict_funcionarios)
 
 def encontrar_e_imprimir_maior_faltas(dict_funcionarios):
-    maior_num_faltas = 1
+    maior_num_faltas = 0
     funcionarios_maior_faltas = []
 
     for matricula, dados in dict_funcionarios.items():
