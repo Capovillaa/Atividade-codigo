@@ -130,7 +130,9 @@ def encontrar_e_imprimir_maior_salario(dict_funcionarios):
         print("Funcionário(s) com maior salario: ")
         for matricula, dados in funcionarios_maior_salario:
             imprimir_folha_pagamento(matricula, dados)
-
+    else:
+        print('-'*50)
+        print("Não há funcionário cadastrado.")
 
 print("\n     BEM VINDO AO SOFTWARE FOLHA DE PAGAMENTO")
 print('-'*50)
