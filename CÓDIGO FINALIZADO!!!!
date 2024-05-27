@@ -50,6 +50,7 @@ def imprimir_folha_pagamento (matricula, inf):
         print(f"Imposto: Isento")
     else:
         print(f"Imposto: {inf[5]*100:.2f}%")
+    print('-' * 50)
 
 
 def alteracao_folha_pagamento (matricula):
@@ -68,12 +69,43 @@ def alteracao_folha_pagamento (matricula):
             print('-'*50)
             novo_cod_funcao = int(input("Digite o Novo Código da Função do Funcionário: "))
             novo_cod_funcao = verificacao_cod(novo_cod_funcao)
-            dict_funcionarios[matricula][1] = novo_cod_funcao # Perguntar pra Lúcia  Se ao cliente alterar o código da função De um determinado funcionário O salário permanece o msm Ou ao alterar a função Necessariamente o salário muda tbm
+            dict_funcionarios[matricula][1] = novo_cod_funcao 
+
+            novo_salario_bruto = calculo_salario_bruto(novo_cod_funcao,dict_funcionarios[matricula][2])
+            novo_salario_liquido,novo_imposto = calculo_salario_liquido_e_imposto(novo_salario_bruto)
+
+            dict_funcionarios[matricula][3] = novo_salario_bruto
+            dict_funcionarios[matricula][4] = novo_salario_liquido
+            dict_funcionarios[matricula][5] = novo_imposto
 
         if (menu_alteracao == 3):  
             print('-'*50)
             novo_num_faltas = int(input("Digite o Novo Número de Faltas: "))  
             dict_funcionarios[matricula][2] = novo_num_faltas
+
+            if (dict_funcionarios[matricula][1] == 101):
+                desconto_faltas = dict_funcionarios[matricula][2] * (dict_funcionarios[matricula][3]/30)
+                dict_funcionarios[matricula][3] = dict_funcionarios[matricula][3] - desconto_faltas
+
+            elif(dict_funcionarios[matricula][1] == 102):
+                desconto_faltas = dict_funcionarios[matricula][2] * (dict_funcionarios[matricula][3]/30)
+                dict_funcionarios[matricula][3] = dict_funcionarios[matricula][3] - desconto_faltas
+
+            if (dict_funcionarios[matricula][3] <= 2259.20):
+                dict_funcionarios[matricula][5] = 0
+            elif (dict_funcionarios[matricula][3] <= 2828.65):
+                dict_funcionarios[matricula][5] = 0.075    
+            elif (dict_funcionarios[matricula][3] <= 3751.05):
+                dict_funcionarios[matricula][5] = 0.15
+            elif (dict_funcionarios[matricula][3] <= 4664.68):
+                dict_funcionarios[matricula][5] = 0.225
+            elif (dict_funcionarios[matricula][3] > 4664.68):
+                dict_funcionarios[matricula][5] = 0.275
+            dict_funcionarios[matricula][4] = dict_funcionarios[matricula][3] - (dict_funcionarios[matricula][3] * dict_funcionarios[matricula][5] ) 
+
+            
+
+
         
         if (menu_alteracao == 4):
             print('-'*50)
@@ -136,7 +168,6 @@ print('-'*50)
 
 dict_funcionarios = {}
 inf_funcionarios=[]
-lista_salarios_brutos=[]
 loop = 0
 
 while(loop==0):
@@ -166,8 +197,6 @@ while(loop==0):
             inf_funcionarios.append(imposto)
             dict_funcionarios[matricula] = inf_funcionarios
             inf_funcionarios=[]
-
-            lista_salarios_brutos.append(salario_bruto)
 
             print('-'*50)
         print("///SOFTWARE FOLHA DE PAGAMENTO///\n")
