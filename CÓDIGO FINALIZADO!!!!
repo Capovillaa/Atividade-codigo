@@ -134,14 +134,14 @@ def encontrar_e_imprimir_maior_faltas(dict_funcionarios):
             funcionarios_maior_faltas = [(matricula, dados)]
         elif num_faltas == maior_num_faltas:
             funcionarios_maior_faltas.append((matricula, dados))
+        if maior_num_faltas == 0:
+            funcionarios_maior_faltas.pop(maior_num_faltas)
+            print("Não há funcionários com faltas.")
 
     if funcionarios_maior_faltas:
         print("Funcionário(s) com maior número de faltas: ")
         for matricula, dados in funcionarios_maior_faltas:
             imprimir_folha_pagamento(matricula, dados)
-    else: 
-        num_faltas < 1
-        print("Nenhum funcionário possui falta")
 
 
 def encontrar_e_imprimir_maior_salario(dict_funcionarios):
@@ -182,6 +182,11 @@ while(loop==0):
 
         for i in range(qnt_funcionarios):
             matricula = int(input(f"Qual a mátricula do {i+1}°funcionário: "))
+            while matricula in dict_funcionarios:
+                print('-'*50)
+                print("Número de matricula já existente")
+                print('-'*50)
+                matricula=int(input("Digite um novo número de matricula: "))
             nome_funcionario = (input(f"Qual o nome do {i+1}°funcionário: "))
             codigo_funcao = int(input("Digite o código da função deste funcionário: "))
             codigo_funcao = verificacao_cod(codigo_funcao) 
