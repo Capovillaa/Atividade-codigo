@@ -272,4 +272,3 @@ while(loop==0):
 
     if (menu == 8):
         loop += 1
-        print('-' * 50)
