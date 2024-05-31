@@ -44,6 +44,7 @@ def imprimir_folha_pagamento (matricula, inf):
     print(f"Nome do funcionário: {inf[0]}")
     print(f"Código da função: {inf[1]}")
     print(f"Número de faltas: {inf[2]}")
+    print(f"Salário Bruto: R$ {inf[3]:.2f}")
     print(f"Salário líquido: R$ {inf[4]:.2f}")
     if inf[5] == 0:
         print(f"Imposto: Isento")
@@ -119,7 +120,8 @@ def alteracao_folha_pagamento (matricula):
             matricula = int(input("Digite a mátricula do novo funcionário que deseja alterar as informações: "))
 
         if (menu_alteracao == 6):   
-            loop_alteracao +=1    
+            loop_alteracao +=1  
+            print('-'*50)  
 
 
 def encontrar_e_imprimir_maior_faltas(dict_funcionarios):
@@ -242,6 +244,7 @@ while(loop==0):
     if (menu == 4):
         
         for k in dict_funcionarios.items():
+    
             matricula = k[0]
             nome_funcionario = k[1][0]
             codigo_funcao = k[1][1]
