@@ -40,7 +40,6 @@ def calculo_salario_liquido_e_imposto (salario_bruto):
     return salario_liquido, imposto
 
 def imprimir_folha_pagamento (matricula, inf):
-    print('-' * 50)
     print(f"Matrícula: {matricula}")
     print(f"Nome do funcionário: {inf[0]}")
     print(f"Código da função: {inf[1]}")
@@ -128,18 +127,25 @@ def encontrar_e_imprimir_maior_faltas(dict_funcionarios):
     funcionarios_maior_faltas = []
 
     for matricula, dados in dict_funcionarios.items():
+
         num_faltas = dados[2]
+
         if num_faltas > maior_num_faltas:
             maior_num_faltas = num_faltas
             funcionarios_maior_faltas = [(matricula, dados)]
         elif num_faltas == maior_num_faltas:
             funcionarios_maior_faltas.append((matricula, dados))
+            
         if maior_num_faltas == 0:
             funcionarios_maior_faltas.pop(maior_num_faltas)
-            print("Não há funcionários com faltas.")
+
+    if maior_num_faltas == 0:
+        print("Não há funcionários com faltas.")
+        print('-'*50)
+        print('')
 
     if funcionarios_maior_faltas:
-        print("Funcionário(s) com maior número de faltas: ")
+        print("Funcionário(s) com maior número de faltas: \n")
         for matricula, dados in funcionarios_maior_faltas:
             imprimir_folha_pagamento(matricula, dados)
 
